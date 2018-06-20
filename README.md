@@ -1,4 +1,4 @@
-# sails-project
+# sails-crud
 
 a [Sails v1](https://sailsjs.com) application
 
