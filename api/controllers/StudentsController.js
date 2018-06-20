@@ -43,17 +43,8 @@ function updateStudent(req, res) {
 function createStudent(req, res) {
 
   var name = req.body.fullname;
-  //var profile_pic = req.body.profile_pic;
-  Students.create({
-    name: name,
-    profile_pic: req.file('profile_pic').upload({
-      adapter: require('skipper-gridfs'),
-      uri: 'mongodb://localhost:27017/mydb.students'
-    }, (err) => {
-      if (err) { return res.serverError(err); }
-      return res.ok();
-    })
-  }).exec((err) => {
+
+  Students.create({ name: name }).exec((err) => {
     if (err) {
       res.send(500, { error: 'Database Error Occured' });
     }
