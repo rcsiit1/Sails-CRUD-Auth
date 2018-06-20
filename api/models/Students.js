@@ -9,6 +9,9 @@ module.exports = {
     roll_number: {
       type: 'integer'
     },
+    profile_pic: {
+      type: 'string'
+    },
 
   },
   datastore: 'mongodb'

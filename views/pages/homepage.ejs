@@ -30,6 +30,7 @@ setTimeout(function sunrise () {
         <tr>
           <th>ID </th>
           <th>Name</th>
+          <th>Profile picture</th>
          
         </tr>
       </thead>
@@ -38,6 +39,7 @@ setTimeout(function sunrise () {
         <tr>
           <td><%= student.id %></td>
           <td><%= student.name %></td>
+          <td><image src="<%= student.profile_pic %>"></image></td>
           
         </tr>
         <% }) %>
