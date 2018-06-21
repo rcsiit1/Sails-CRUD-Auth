@@ -41,6 +41,21 @@ module.exports.routes = {
     controller: 'StudentsController',
     action: 'update'
   },
+  '/login/': {
+
+    controller: 'UserController',
+    action: 'userLogin'
+  },
+  '/authenticateUser/': {
+
+    controller: 'UserController',
+    action: 'authenticateUser'
+  },
+  '/destroySession/': {
+
+    controller: 'UserController',
+    action: 'destroySession'
+  },
 
 
 
