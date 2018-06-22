@@ -19,7 +19,8 @@
                         <div class="card-header" style="text-align:center">Log in to Your Account</div>
                       <div class="card-body">
                           <form method="POST" action="/login">
-                            <div class="form-group">
+                            <span style="color:red;"><%= errors.message %></span>
+                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <div class="input-icon icon-password"></div>
                                     <input autocomplete="off" class="form-control email id" name="email"  tabindex="2" type="Email" placeholder="Email address"/>

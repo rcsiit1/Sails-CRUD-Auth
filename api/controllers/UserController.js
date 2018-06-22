@@ -7,7 +7,7 @@ function userLogin(req, res) {
     return authenticateUser(req, res);
   }
   else {
-    res.view('pages/login',{layout:false});
+    res.view('pages/login',{errors:{},layout:false});
   }
 
 
@@ -16,13 +16,10 @@ function userLogin(req, res) {
 async function authenticateUser(req, res) {
 
   if (!req.param('email') || !req.param('password')) {
-
-    var errorMessage = [{ name: 'Username password required', message: 'You must enter both username and password to login!' }];
-
-    req.session.flash = {
-      err: errorMessage
-    };
-    return res.redirect('/login');
+    // console.log("Auth IF.");
+    var errorMessage = {  message: 'You must enter both username and password to login!' };
+    // console.log(errorMessage);
+    return res.view('pages/login',{errors:errorMessage,layout:false});
   }
 
   var user = await User.find({ email: req.param('email'), password: req.param('password') });
@@ -31,11 +28,11 @@ async function authenticateUser(req, res) {
 
   if (!user[0]) {
 
-    var userError = [{ name: 'no Account', message: 'The email address' + req.param('email') + 'is not valid' }];
-    req.session.flash = {
-      err: userError
-    };
-    return res.status(500).body(" User not Found!");
+    var userError = {  message: 'No account with email' +'   '+ req.param('email')+'   ' + 'is registered' };
+    
+   
+    // console.log(errorMessage);
+    return res.view('pages/login',{errors:userError,layout:false});
   }
 
   else {
