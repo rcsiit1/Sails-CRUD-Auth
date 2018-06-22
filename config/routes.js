@@ -41,7 +41,7 @@ module.exports.routes = {
     controller: 'StudentsController',
     action: 'update'
   },
-  '/login/': {
+  '/login': {
 
     controller: 'UserController',
     action: 'userLogin'

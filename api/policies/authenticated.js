@@ -1,9 +1,9 @@
 
 module.exports = function authenticated(req, res, next) {
   var whitelist = ["/login"];
-  var secondWhitelist = ["/authenticateUser"];
+ 
   
-  if (whitelist.includes(req.url) || secondWhitelist.includes(req.url) ) {
+  if (whitelist.includes(req.url)) {
     return next();
   }
   else {
@@ -13,11 +13,11 @@ module.exports = function authenticated(req, res, next) {
         err: notAuthenticatedError
       };
       res.redirect('/login');
-      //return next();
+     
     }
     else {
 
-      res.redirect('/authenticateUser/');
+      return next();
     }
   }
 };
