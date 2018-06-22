@@ -7,7 +7,7 @@ function userLogin(req, res) {
     return authenticateUser(req, res);
   }
   else {
-    res.view('pages/login',{errors:{},layout:false});
+    res.view('pages/login', { errors: {}, layout: false });
   }
 
 
@@ -16,32 +16,21 @@ function userLogin(req, res) {
 async function authenticateUser(req, res) {
 
   if (!req.param('email') || !req.param('password')) {
-    // console.log("Auth IF.");
-    var errorMessage = {  message: 'You must enter both username and password to login!' };
-    // console.log(errorMessage);
-    return res.view('pages/login',{errors:errorMessage,layout:false});
+    var errorMessage = { message: 'You must enter both username and password to login!' };
+    return res.view('pages/login', { errors: errorMessage, layout: false });
   }
 
   var user = await User.find({ email: req.param('email'), password: req.param('password') });
 
-
-
   if (!user[0]) {
-
-    var userError = {  message: 'No account with email' +'   '+ req.param('email')+'   ' + 'is registered' };
-    
-   
-    // console.log(errorMessage);
-    return res.view('pages/login',{errors:userError,layout:false});
+    var userError = { message: 'No account with email' + '   ' + req.param('email') + '   ' + 'is registered' };
+    return res.view('pages/login', { errors: userError, layout: false });
   }
-
   else {
     req.session.authenticated = true;
     req.session.User = user;
     return res.redirect('/');
   }
-
-
 }
 
 function destroySession(req, res) {
@@ -49,8 +38,8 @@ function destroySession(req, res) {
   req.session.authenticated = undefined;
   req.session.destroy(() => {
     return res.redirect('/login');
-  });
 
+  });
 }
 
 module.exports = {
